@@ -17,7 +17,7 @@ export function Selector (): JSX.Element {
   }
 
   return (
-    <div className='w-full h-screen bg-gold-7'>
+    <div className='w-full h-screen bg-slate-2 dark'>
       {content}
     </div>
   )
