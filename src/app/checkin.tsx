@@ -13,11 +13,11 @@ interface ColumnProps {
 
 function Column (props: ColumnProps): JSX.Element {
   return (
-    <div className='flex flex-col w-1/4 text-center gap-4'>
+    <div className='flex flex-col w-1/4 text-center gap-6'>
       <div className='text-4xl text-slate-12'>{props.title}</div>
       <div className='grid grid-cols-2'>
       {props.teams.map(team => (
-        <div className='text-slate-11 text-2xl'>{team.number}</div>
+        <div className='text-slate-11 text-3xl'>{team.number}</div>
       ))}
       </div>
     </div>
