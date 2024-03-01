@@ -2,6 +2,7 @@
 
 import { EventStage, useStageQuery } from '../__generated__/graphql'
 import { Checkin } from './checkin'
+import { Queueing } from './queueing'
 
 export function Selector (): JSX.Element {
   const { data } = useStageQuery({ pollInterval: 500 })
@@ -13,6 +14,8 @@ export function Selector (): JSX.Element {
 
     if (stage === EventStage.Checkin) {
       content = <Checkin />
+    } else if (stage === EventStage.Qualifications || stage === EventStage.Elims) {
+      content = <Queueing />
     }
   }
 

@@ -10,3 +10,18 @@ query Stage {
         stage
     }
 }
+
+query Sittings {
+    matches {
+        id
+        id
+        sitting
+        round
+        contest
+        match
+        field
+        status
+        red
+        blue
+    }
+}

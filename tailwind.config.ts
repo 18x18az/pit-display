@@ -55,7 +55,7 @@ module.exports = {
   ]
 }
 
-function generateScale (name: string) {
+function generateScale (name: string): ObjectConstructor {
   const scale = Array.from({ length: 12 }, (_, i) => {
     const id = i + 1
     return [
