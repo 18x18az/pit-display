@@ -12,7 +12,7 @@ import { createClient } from 'graphql-ws'
 // }
 
 function getHttpUrl (): string {
-  const host = "io.18x18az.org:1818"
+  const host = 'io.18x18az.org:1818'
   return `http://${host}/graphql`
 }
 
@@ -21,7 +21,7 @@ const httpLink = new HttpLink({
 })
 
 function getWsUrl (): string {
-  const host = "io.18x18az.org:1818"
+  const host = 'io.18x18az.org:1818'
   return `ws://${host}/graphql`
 }
 
