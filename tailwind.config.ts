@@ -1,20 +1,68 @@
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/**/*.{ts,tsx}'
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        tablet: '600px',
+        desktop: '1024px'
+      },
+      extend: {
+        fontSize: {
+          '10xl': '10rem'
+        }
+      }
+    },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+      colors: {
+        slate: generateScale('slate'),
+        indigo: generateScale('indigo'),
+        red: generateScale('red'),
+        green: generateScale('gold'),
+        iris: generateScale('iris'),
+        blue: generateScale('blue')
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 }
+        },
+        intense: {
+          '75%, 100%': {
+            transform: 'scale(1.2)',
+            opacity: '0'
+          }
+        }
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        intense: 'intense 1s cubic-bezier(0, 0, 0.2, 1) infinite'
       }
     }
   },
-  plugins: []
+  plugins: [
+    require('tailwindcss-animate')
+  ]
 }
-export default config
+
+function generateScale (name: string) {
+  const scale = Array.from({ length: 12 }, (_, i) => {
+    const id = i + 1
+    return [
+      [id, `var(--${name}-${id})`],
+      [`a${id}`, `var(--${name}A${id})`]
+    ]
+  }).flat()
+
+  return Object.fromEntries(scale)
+}
