@@ -1,0 +1,6 @@
+query Inspection {
+    teams {
+        number
+        inspection
+    }
+}
