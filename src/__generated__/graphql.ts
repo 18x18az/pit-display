@@ -145,6 +145,11 @@ export type InspectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type InspectionQuery = { __typename?: 'Query', teams: Array<{ __typename?: 'Team', number: string, inspection: Inspection }> };
 
+export type StageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type StageQuery = { __typename?: 'Query', stage: { __typename?: 'Stage', stage: EventStage } };
+
 
 export const InspectionDocument = gql`
     query Inspection {
@@ -186,3 +191,42 @@ export type InspectionQueryHookResult = ReturnType<typeof useInspectionQuery>;
 export type InspectionLazyQueryHookResult = ReturnType<typeof useInspectionLazyQuery>;
 export type InspectionSuspenseQueryHookResult = ReturnType<typeof useInspectionSuspenseQuery>;
 export type InspectionQueryResult = Apollo.QueryResult<InspectionQuery, InspectionQueryVariables>;
+export const StageDocument = gql`
+    query Stage {
+  stage {
+    stage
+  }
+}
+    `;
+
+/**
+ * __useStageQuery__
+ *
+ * To run a query within a React component, call `useStageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useStageQuery(baseOptions?: Apollo.QueryHookOptions<StageQuery, StageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StageQuery, StageQueryVariables>(StageDocument, options);
+      }
+export function useStageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StageQuery, StageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StageQuery, StageQueryVariables>(StageDocument, options);
+        }
+export function useStageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<StageQuery, StageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<StageQuery, StageQueryVariables>(StageDocument, options);
+        }
+export type StageQueryHookResult = ReturnType<typeof useStageQuery>;
+export type StageLazyQueryHookResult = ReturnType<typeof useStageLazyQuery>;
+export type StageSuspenseQueryHookResult = ReturnType<typeof useStageSuspenseQuery>;
+export type StageQueryResult = Apollo.QueryResult<StageQuery, StageQueryVariables>;

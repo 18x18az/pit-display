@@ -4,3 +4,9 @@ query Inspection {
         inspection
     }
 }
+
+query Stage {
+    stage {
+        stage
+    }
+}
