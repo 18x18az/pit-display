@@ -16,7 +16,7 @@ interface SittingInfo {
 function makeName (sitting: SittingInfo): string {
   let round = 'Q'
 
-  switch(sitting.round) {
+  switch (sitting.round) {
     case Round.Ro16:
       round = 'R16'
       break
@@ -39,9 +39,9 @@ interface SittingProps {
   queuedSitting: number
 }
 
-function Teams (props: {teams: string[], color: 'red' | 'blue'}): JSX.Element {
+function Teams (props: { teams: string[], color: 'red' | 'blue' }): JSX.Element {
   const { teams, color } = props
-  
+
   const text: string = teams.join(', ')
 
   const fontColor = color === 'red' ? 'text-red-9' : 'text-blue-9'
@@ -51,7 +51,7 @@ function Teams (props: {teams: string[], color: 'red' | 'blue'}): JSX.Element {
   )
 }
 
-export function Sitting(props: SittingProps): JSX.Element {
+export function Sitting (props: SittingProps): JSX.Element {
   const { sitting } = props
   const name = makeName(sitting)
 
@@ -61,11 +61,10 @@ export function Sitting(props: SittingProps): JSX.Element {
     title = `${name} - Scoring`
   } else if (sitting.status === MatchStatus.InProgress) {
     title = `${name} - In Progress`
-  }
-  else if (sitting.id <= props.queuedSitting) {
+  } else if (sitting.id <= props.queuedSitting) {
     title = `${name} - Queued`
   }
-  
+
   return (
     <div className='flex flex-col text-center w-full gap-4'>
       <div className='text-4xl text-slate-11'>{title}</div>
@@ -95,7 +94,7 @@ export function Queueing (): JSX.Element {
   const queuedSittingName = makeName(queuedSitting)
 
   const displayedSittings = sittings.map(sitting => (
-    <Sitting key={sitting.id} sitting={sitting} queuedSitting={queuedSitting.id}/>
+    <Sitting key={sitting.id} sitting={sitting} queuedSitting={queuedSitting.id} />
   ))
 
   return (
